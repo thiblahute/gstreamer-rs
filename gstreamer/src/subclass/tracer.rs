@@ -4,8 +4,8 @@ use glib::{prelude::*, subclass::prelude::*, translate::*};
 
 use super::prelude::*;
 use crate::{
-    ffi, Bin, Buffer, BufferList, Element, Event, FlowError, FlowSuccess, Message, MiniObject,
-    Object, Pad, PadLinkError, PadLinkSuccess, QueryRef, StateChange, StateChangeError,
+    ffi, Bin, Buffer, BufferList, Element, Event, FlowError, FlowSuccess, MemoryRef, Message,
+    MiniObject, Object, Pad, PadLinkError, PadLinkSuccess, QueryRef, StateChange, StateChangeError,
     StateChangeSuccess, Tracer,
 };
 
@@ -81,6 +81,15 @@ pub trait TracerImpl: TracerImplExt + GstObjectImpl + Send + Sync {
     #[cfg(feature = "v1_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
     fn plugin_feature_loaded(&self, ts: u64, feature: &crate::PluginFeature) {}
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    fn memory_init(&self, ts: u64, mem: &MemoryRef) {}
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    fn memory_free_pre(&self, ts: u64, mem: &MemoryRef) {}
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    fn memory_free_post(&self, ts: u64, mem: std::ptr::NonNull<ffi::GstMemory>) {}
 }
 
 unsafe impl<T: TracerImpl> IsSubclassable<T> for Tracer {}
@@ -329,5 +338,23 @@ define_tracer_hooks! {
     PluginFeatureLoaded("plugin-feature-loaded") = |this, ts, feature: *mut ffi::GstPluginFeature| {
         let feature = crate::PluginFeature::from_glib_borrow(feature);
         this.plugin_feature_loaded(ts, &feature)
+    };
+
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    MemoryInit("memory-init") = |this, ts, memory: *mut ffi::GstMemory| {
+        let memory = crate::MemoryRef::from_ptr(memory);
+        this.memory_init(ts, memory)
+    };
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    MemoryFreePre("memory-free-pre") = |this, ts, memory: *mut ffi::GstMemory| {
+        let memory = crate::MemoryRef::from_ptr(memory);
+        this.memory_free_pre(ts, memory)
+    };
+    #[cfg(feature = "v1_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_20")))]
+    MemoryFreePost("memory-free-post") = |this, ts, memory: *mut ffi::GstMemory| {
+        this.memory_free_post(ts, std::ptr::NonNull::new_unchecked(memory))
     };
 }
