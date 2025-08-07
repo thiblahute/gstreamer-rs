@@ -20,7 +20,6 @@ impl Drop for ActionParameter {
 }
 
 fn into_glib_content(mut t: Vec<ActionParameter>) -> *mut ffi::GstValidateActionParameter {
-    assert_initialized_main_thread!();
     if t.is_empty() {
         return ptr::null_mut();
     }
@@ -63,8 +62,6 @@ pub struct ActionParameterBuilder<'a> {
 
 impl<'a> ActionParameterBuilder<'a> {
     pub fn new(name: &'a str, description: &'a str) -> Self {
-        assert_initialized_main_thread!();
-
         Self {
             name,
             description,
