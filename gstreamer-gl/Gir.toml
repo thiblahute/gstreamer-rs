@@ -478,48 +478,39 @@ final_type = true
 
     [[object.function]]
     name = "set_uniform_matrix_2fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_2x3fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_2x4fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_3fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_3x2fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_3x4fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_4fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_4x2fv"
-    # array with size
-    ignore = true
+    manual = true
 
     [[object.function]]
     name = "set_uniform_matrix_4x3fv"
-    # array with size
-    ignore = true
+    manual = true
 
 [[object]]
 name = "GstGL.GLSLProfile"

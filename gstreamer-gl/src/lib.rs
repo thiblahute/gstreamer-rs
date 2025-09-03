@@ -48,6 +48,7 @@ pub use crate::gl_memory::*;
 mod gl_framebuffer;
 mod gl_memory_pbo;
 pub use crate::gl_memory_pbo::*;
+mod gl_shader;
 
 // Re-export all the traits in a prelude module, so that applications
 // can always "use gst_gl::prelude::*" without getting conflicts
@@ -58,7 +59,8 @@ pub mod prelude {
     pub use crate::{
         auto::traits::*, context::ContextGLExt, gl_context::GLContextExtManual,
         gl_display::GLDisplayExtManual, gl_framebuffer::GLFramebufferExtManual,
-        gl_video_frame::GLVideoFrameExt, gl_video_frame::IsGLVideoFrame,
+        gl_shader::GLShaderExtManual, gl_video_frame::GLVideoFrameExt,
+        gl_video_frame::IsGLVideoFrame,
     };
 }
 
