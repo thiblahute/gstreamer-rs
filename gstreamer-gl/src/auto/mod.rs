@@ -9,6 +9,20 @@ pub use self::gl_base_filter::GLBaseFilter;
 mod gl_base_memory_allocator;
 pub use self::gl_base_memory_allocator::GLBaseMemoryAllocator;
 
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+mod gl_base_mixer;
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+pub use self::gl_base_mixer::GLBaseMixer;
+
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+mod gl_base_mixer_pad;
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+pub use self::gl_base_mixer_pad::GLBaseMixerPad;
+
 #[cfg(feature = "v1_18")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_18")))]
 mod gl_base_src;
@@ -36,6 +50,20 @@ pub use self::gl_framebuffer::GLFramebuffer;
 
 mod gl_memory_allocator;
 pub use self::gl_memory_allocator::GLMemoryAllocator;
+
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+mod gl_mixer;
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+pub use self::gl_mixer::GLMixer;
+
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+mod gl_mixer_pad;
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+pub use self::gl_mixer_pad::GLMixerPad;
 
 mod gl_overlay_compositor;
 pub use self::gl_overlay_compositor::GLOverlayCompositor;
@@ -118,6 +146,9 @@ pub use self::constants::GL_TEXTURE_TARGET_RECTANGLE_STR;
 
 pub(crate) mod traits {
     pub use super::gl_base_filter::GLBaseFilterExt;
+    #[cfg(feature = "v1_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+    pub use super::gl_base_mixer::GLBaseMixerExt;
     #[cfg(feature = "v1_18")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_18")))]
     pub use super::gl_base_src::GLBaseSrcExt;
@@ -126,5 +157,8 @@ pub(crate) mod traits {
     pub use super::gl_display::GLDisplayExt;
     pub use super::gl_filter::GLFilterExt;
     pub use super::gl_framebuffer::GLFramebufferExt;
+    #[cfg(feature = "v1_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+    pub use super::gl_mixer::GLMixerExt;
     pub use super::gl_window::GLWindowExt;
 }

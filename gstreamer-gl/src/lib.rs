@@ -48,6 +48,9 @@ pub use crate::gl_memory::*;
 mod gl_framebuffer;
 mod gl_memory_pbo;
 pub use crate::gl_memory_pbo::*;
+#[cfg(feature = "v1_24")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+mod gl_mixer_pad;
 mod gl_shader;
 
 // Re-export all the traits in a prelude module, so that applications
@@ -62,6 +65,10 @@ pub mod prelude {
         gl_shader::GLShaderExtManual, gl_video_frame::GLVideoFrameExt,
         gl_video_frame::IsGLVideoFrame,
     };
+
+    #[cfg(feature = "v1_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_24")))]
+    pub use crate::gl_mixer_pad::GLMixerPadExtManual;
 }
 
 pub mod subclass;

@@ -21,6 +21,10 @@ external_libraries = [
 generate = [
     "GstGL.GLBaseFilter",
     "GstGL.GLBaseMemoryAllocator",
+    "GstGL.GLBaseMixer",
+    "GstGL.GLBaseMixerPad",
+    "GstGL.GLMixer",
+    "GstGL.GLMixerPad",
     "GstGL.GLBaseSrc",
     "GstGL.GLBufferPool",
     "GstGL.GLConfigCaveat",
@@ -50,9 +54,12 @@ manual = [
     "Gst.FlowReturn",
     "Gst.Memory",
     "Gst.Object",
+    "Gst.Pad",
     "Gst.PadDirection",
     "GstBase.BaseSrc",
     "GstBase.BaseTransform",
+    "GstBase.Aggregator",
+    "GstBase.AggregatorPad",
     "GstBase.PushSrc",
     "GstGL.GLBaseMemory",
     "GstGL.GLMemory",
@@ -61,6 +68,8 @@ manual = [
     "GstVideo.VideoMultiviewFlags",
     "GstVideo.VideoMultiviewMode",
     "GstVideo.VideoOverlay",
+    "GstVideo.VideoAggregator",
+    "GstVideo.VideoAggregatorPad",
 ]
 
 [[object]]
